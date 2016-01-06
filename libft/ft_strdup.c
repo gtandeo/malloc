@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtandeo <gtandeo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/04 05:24:22 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/06 10:32:15 by gtandeo          ###   ########.fr       */
+/*   Created: 2014/04/15 03:58:58 by gtandeo           #+#    #+#             */
+/*   Updated: 2014/04/15 11:49:08 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_malloc.h"
+#include "libft.h"
 
-void	*realloc(void *ptr, size_t size)
+char	*ft_strdup(const char *s1)
 {
-	(void)ptr;
-	(void)size;
-	return (NULL);
+	char	*dup;
+	int		i;
+
+	i = 0;
+	dup = (char*)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	while (s1[i])
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

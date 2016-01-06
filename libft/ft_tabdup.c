@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc.c                                          :+:      :+:    :+:   */
+/*   ft_tabdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtandeo <gtandeo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/04 05:24:22 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/06 10:32:15 by gtandeo          ###   ########.fr       */
+/*   Created: 2015/02/12 00:59:12 by gtandeo           #+#    #+#             */
+/*   Updated: 2015/02/12 01:04:26 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_malloc.h"
+#include "libft.h"
 
-void	*realloc(void *ptr, size_t size)
+char	**ft_tabdup(char **tab)
 {
-	(void)ptr;
-	(void)size;
-	return (NULL);
+	char	**ret;
+	int		i;
+
+	i = 0;
+	ret = (char**)malloc(sizeof(char*) * ft_tablen(tab) + 1);
+	while (tab[i])
+	{
+		ret[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	ret[i] = NULL;
+	return (ret);
 }

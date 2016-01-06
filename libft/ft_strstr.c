@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc.c                                          :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtandeo <gtandeo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/04 05:24:22 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/06 10:32:15 by gtandeo          ###   ########.fr       */
+/*   Created: 2014/04/18 05:30:45 by gtandeo           #+#    #+#             */
+/*   Updated: 2015/02/12 00:54:08 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_malloc.h"
+#include "libft.h"
 
-void	*realloc(void *ptr, size_t size)
+char			*ft_strstr(const char *s1, const char *s2)
 {
-	(void)ptr;
-	(void)size;
-	return (NULL);
+	if (*s2 == '\0')
+		return ((char *)s1);
+	while (ft_strncmp(s1, s2, ft_strlen(s2)) != 0)
+	{
+		if (*s1 == '\0')
+			return (NULL);
+		s1++;
+	}
+	return ((char*)s1);
 }

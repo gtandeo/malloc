@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc.c                                          :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtandeo <gtandeo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/04 05:24:22 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/06 10:32:15 by gtandeo          ###   ########.fr       */
+/*   Created: 2014/04/15 12:11:30 by gtandeo           #+#    #+#             */
+/*   Updated: 2014/04/15 12:14:17 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_malloc.h"
+#include "libft.h"
 
-void	*realloc(void *ptr, size_t size)
+int		ft_tolower(int c)
 {
-	(void)ptr;
-	(void)size;
-	return (NULL);
+	int		i;
+
+	if (c >= 'A' && c <= 'Z')
+	{
+		i = c + 32;
+		return (i);
+	}
+	return (c);
 }

@@ -6,11 +6,11 @@
 /*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 05:24:11 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/05 02:41:08 by gtandeo          ###   ########.fr       */
+/*   Updated: 2016/01/06 10:32:25 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_alloc.h"
+#include "libft_malloc.h"
 
 void	free(void *ptr)
 {
