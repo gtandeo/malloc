@@ -6,13 +6,16 @@
 #    By: gtandeo <gtandeo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 15:40:28 by gtandeo           #+#    #+#              #
-#    Updated: 2016/01/06 10:57:05 by gtandeo          ###   ########.fr        #
+#    Updated: 2016/01/21 23:55:14 by gtandeo          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 SRC = free.c \
 	  malloc.c \
-	  realloc.c
+	  realloc.c \
+	  t_sigleton.c \
+	  s_sigleton.c \
+	  l_sigleton.c
 
 CFLAGS = -Wall -Werror -Wextra
 
