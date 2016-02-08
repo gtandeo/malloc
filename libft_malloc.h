@@ -6,7 +6,7 @@
 /*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 05:19:03 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/22 02:39:56 by gtandeo          ###   ########.fr       */
+/*   Updated: 2016/02/08 10:54:22 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,32 @@
 # define TINY_ZONE (4 * getpagesize())
 # define SMALL_ZONE (16 * getpagesize())
 
-struct s_block {
+
+typedef struct		s_block
+{
 	size_t			size;
 	struct s_block	*next;
 	struct s_block	*prev;
 	int				free;
 	void			*ptr;
 	char			data[1];
-};
+}					t_block;
+
+typedef struct		s_malloc
+{
+	t_block			*tiny;
+	t_block			*small;
+	t_block			*large;
+}					t_malloc;
+
+t_malloc			g_malloc;
 
 void				free(void *ptr);
-void				*ft_malloc(size_t size);
+void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
 void				show_alloc_mem();
+void				*add_tiny(int size);
+void				*add_small(int size);
+void				*add_large(int size);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 05:24:17 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/01/22 02:25:28 by gtandeo          ###   ########.fr       */
+/*   Updated: 2016/02/08 10:48:25 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
 
-void	*tiny_allocation(void *ret, size_t size)
+/*void	*tiny_allocation(void *ret, size_t size)
 {
 	if (mmap(ret, size, PROT_NONE, MAP_PRIVATE, 2, ft_abs(size / getpagesize()) + 1) == MAP_FAILED)
 		return (NULL);
@@ -24,9 +24,9 @@ void	*small_allocation(void *ret, size_t size)
 	if (mmap(ret, size, PROT_NONE, MAP_PRIVATE, 2, ft_abs(size / getpagesize()) + 1) == MAP_FAILED)
 		return (NULL);
 	return (ret);
-}
+}*/
 
-void	*ft_malloc(size_t size)
+void	*malloc(size_t size)
 {
 	if (size <= TINY_BLOCK)
 		return (add_tiny(size));

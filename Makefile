@@ -13,9 +13,7 @@
 SRC = free.c \
 	  malloc.c \
 	  realloc.c \
-	  t_sigleton.c \
-	  s_sigleton.c \
-	  l_sigleton.c
+	  add_block.c
 
 CFLAGS = -Wall -Werror -Wextra
 

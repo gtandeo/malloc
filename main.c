@@ -16,6 +16,6 @@ int		main(void)
 {
 	int		*test;
 
-	test = (int*)ft_malloc(sizeof(int) * 4);
+	test = (int*)malloc(sizeof(int) * 4);
 	return (0);
 }
