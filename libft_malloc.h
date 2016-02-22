@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 
-# include "libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/mman.h>
@@ -33,7 +32,7 @@ typedef struct		s_block
 	size_t			size;
 	struct s_block	*next;
 	struct s_block	*prev;
-	int				free;
+	int				is_free;
 	void			*ptr;
 	char			data[1];
 }					t_block;

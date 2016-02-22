@@ -31,7 +31,7 @@ void	*add_tiny(int size)
 	block->size = size;
 	block->prev = tmp;
 	block->next = NULL;
-	block->free = 0;
+	block->is_free = 0;
 	return (block->ptr);
 }
 
@@ -54,7 +54,7 @@ void	*add_small(int size)
 	block->size = size;
 	block->prev = tmp;
 	block->next = NULL;
-	block->free = 0;
+	block->is_free = 0;
 	return (block->ptr);
 }
 

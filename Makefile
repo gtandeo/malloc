@@ -23,19 +23,11 @@ endif
 
 NAME = libft_malloc_$(HOSTTYPE).so
 
-LIB = libft.a
-
-LIBDIR = libft/
-
 OBJ = $(SRC:.c=.o)
 
 HEAD = libft_malloc.h
 
-all: $(LIB) $(NAME)
-
-$(LIB):
-	@make -C $(LIBDIR) fclean
-	@make -C $(LIBDIR)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar -rc $(NAME) $(OBJ)
@@ -52,12 +44,10 @@ $(OBJ): $(HEAD)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I .
 
 clean:
-	@make -C $(LIBDIR) clean
 	@/bin/rm -f $(OBJ)
 	@echo "\033[33m"$(NAME) objects Deleted ! "\033[32m"Success
 
 fclean: clean
-	@make -C $(LIBDIR) fclean
 	@/bin/rm -f $(NAME)
 	@/bin/rm -f libft_malloc.so
 	@echo "\033[33m"$(NAME) Deleted ! "\033[32m"Success
