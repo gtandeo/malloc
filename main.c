@@ -14,8 +14,13 @@
 
 int		main(void)
 {
-	int		*test;
+	char	*test;
 
-	test = (int*)malloc(sizeof(int) * 4);
+	test = (char*)malloc(sizeof(char) * 5);
+	test[0] = 't';
+	test[1] = 'e';
+	test[2] = 's';
+	test[3] = 't';
+	test[4] = '\0';
 	return (0);
 }
