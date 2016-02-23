@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
-
+#include <stdio.h>
 int		main(void)
 {
 	char	*test;
@@ -22,5 +22,6 @@ int		main(void)
 	test[2] = 's';
 	test[3] = 't';
 	test[4] = '\0';
+	printf("%s\n", test);
 	return (0);
 }
