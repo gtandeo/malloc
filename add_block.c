@@ -16,17 +16,10 @@ void	*add_tiny(int size)
 {
 	t_block			*tmp;
 	t_block			*block;
-	static void *test;
 
 	if (!g_malloc.tiny)
 	{
 		if ((g_malloc.tiny = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
-				== MAP_FAILED)
-			return (NULL);
-	}
-	if (!test)
-	{
-		if ((test = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
 	}
