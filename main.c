@@ -12,11 +12,13 @@
 
 #include "libft_malloc.h"
 #include <stdio.h>
+
 int		main(void)
 {
 	char	*test;
 
-	test = (char*)malloc(sizeof(char) * 5);
+	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
+		write(1, "error\n", 6);
 	test[0] = 't';
 	test[1] = 'e';
 	test[2] = 's';
