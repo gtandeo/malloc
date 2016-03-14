@@ -23,7 +23,7 @@ void	free(void *ptr)
 	{
 		if (tmp->ptr == ptr)
 		{
-			tmp->is_free = 0;
+			tmp->is_free = 1;
 			return ;
 		}
 	}
@@ -32,7 +32,7 @@ void	free(void *ptr)
 	{
 		if (tmp2->ptr == ptr)
 		{
-			tmp2->is_free = 0;
+			tmp2->is_free = 1;
 			return ;
 		}
 	}
@@ -41,7 +41,7 @@ void	free(void *ptr)
 	{
 		if (tmp3->ptr == ptr)
 		{
-			tmp3->is_free = 0;
+			tmp3->is_free = 1;
 			return ;
 		}
 	}
