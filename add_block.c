@@ -50,20 +50,28 @@ void	*add_small(int size)
 
 	if (!g_malloc.small)
 	{
-		if ((g_malloc.small = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) 
+		if ((g_malloc.small = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
+		g_malloc.small->size = size;
+		g_malloc.small->prev = NULL;
+		g_malloc.small->next = NULL;
+		g_malloc.small->is_free = 0;
+		return (&(g_malloc.small->ptr));
 	}
-	tmp = g_malloc.small;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
-	tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
-	block = tmp->next;
-	block->size = size;
-	block->prev = tmp;
-	block->next = NULL;
-	block->is_free = 0;
-	return (block->ptr);
+	else
+	{
+		tmp = g_malloc.small;
+		while (tmp && tmp->next)
+			tmp = tmp->next;
+		tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
+		block = tmp->next;
+		block->size = size;
+		block->prev = tmp;
+		block->next = NULL;
+		block->is_free = 0;
+		return (&(block->ptr));
+	}
 }
 
 void	*add_large(int size)
