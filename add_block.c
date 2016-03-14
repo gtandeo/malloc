@@ -22,17 +22,25 @@ void	*add_tiny(int size)
 		if ((g_malloc.tiny = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
+		g_malloc.tiny->size = size;
+		g_malloc.tiny->prev = NULL;
+		g_malloc.tiny->next = NULL;
+		g_malloc.tiny->is_free = 0;
+		return (&(g_malloc.tiny->ptr));
 	}
-	tmp = g_malloc.tiny;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
-	tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
-	block = tmp->next;
-	block->size = size;
-	block->prev = tmp;
-	block->next = NULL;
-	block->is_free = 0;
-	return (block->ptr);
+	else
+	{
+		tmp = g_malloc.tiny;
+		while (tmp && tmp->next)
+			tmp = tmp->next;
+		tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
+		block = tmp->next;
+		block->size = size;
+		block->prev = tmp;
+		block->next = NULL;
+		block->is_free = 0;
+		return (&(block->ptr));
+	}
 }
 
 void	*add_small(int size)
@@ -42,7 +50,7 @@ void	*add_small(int size)
 
 	if (!g_malloc.small)
 	{
-		if ((g_malloc.small = mmap(NULL, TINY_ZONE, PROT_NONE, MAP_PRIVATE, -1, 0)) 
+		if ((g_malloc.small = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0)) 
 				== MAP_FAILED)
 			return (NULL);
 	}
