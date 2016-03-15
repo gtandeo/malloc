@@ -10,21 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_malloc.h"
-
-/*void	*tiny_allocation(void *ret, size_t size)
-{
-	if (mmap(ret, size, PROT_NONE, MAP_PRIVATE, 2, ft_abs(size / getpagesize()) + 1) == MAP_FAILED)
-		return (NULL);
-	return (ret);
-}
-
-void	*small_allocation(void *ret, size_t size)
-{
-	if (mmap(ret, size, PROT_NONE, MAP_PRIVATE, 2, ft_abs(size / getpagesize()) + 1) == MAP_FAILED)
-		return (NULL);
-	return (ret);
-}*/
+#include <libft_malloc.h>
 
 void	*malloc(size_t size)
 {

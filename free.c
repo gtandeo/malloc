@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_malloc.h"
+#include <libft_malloc.h>
 
 void	free(void *ptr)
 {
@@ -21,31 +21,33 @@ void	free(void *ptr)
 	tmp = g_malloc.tiny;
 	while (tmp && tmp->next)
 	{
-		if (tmp->ptr == ptr)
+		if (&(tmp->ptr) == &ptr)
 		{
 			tmp->is_free = 1;
 			return ;
 		}
+		tmp2 = tmp2->next;
 	}
 	tmp2 = g_malloc.small;
 	while (tmp2 && tmp2->next)
 	{
-		if (tmp2->ptr == ptr)
+		if (&(tmp2->ptr) == &ptr)
 		{
 			tmp2->is_free = 1;
 			return ;
 		}
+		tmp2 = tmp2->next;
 	}
 	tmp3 = g_malloc.large;
 	while (tmp3 && tmp3->next)
 	{
-		if (tmp3->ptr == ptr)
+		if (&(tmp3->ptr) == &ptr)
 		{
 			tmp3->is_free = 1;
 			return ;
 		}
+		tmp3 = tmp3->next;
 	}
-	write(1, "free error\n", 11);
+	write(2, "free error\n", 11);
 	exit(0);
-	return ;
 }
