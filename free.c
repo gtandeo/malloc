@@ -12,42 +12,63 @@
 
 #include <libft_malloc.h>
 
-void	free(void *ptr)
+static void	check_all_is_free(t_block *zone, int size)
 {
 	t_block		*tmp;
-	t_block		*tmp2;
-	t_block		*tmp3;
 
-	tmp = g_malloc.tiny;
+	tmp = zone;
+	while (tmp && tmp->next)
+	{
+		if (!tmp->is_free)
+			return ;
+		tmp = tmp->next;
+	}
+	munmap(zone, size);
+	return ;
+}
+
+static int		free_large(void *ptr)
+{
+	t_block		*tmp;
+
+	tmp = g_malloc.large;
+	while (tmp && tmp->next)
+	{
+		if (&(tmp->ptr) == &ptr)
+		{
+			munmap(tmp, tmp->size);
+			return (0);
+		}
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+static int		set_free(t_block *zone, void *ptr)
+{
+	t_block		*tmp;
+
+	tmp = zone;
 	while (tmp && tmp->next)
 	{
 		if (&(tmp->ptr) == &ptr)
 		{
 			tmp->is_free = 1;
-			return ;
+			return (0);
 		}
-		tmp2 = tmp2->next;
+		tmp = tmp->next;
 	}
-	tmp2 = g_malloc.small;
-	while (tmp2 && tmp2->next)
+	return (1);
+}
+
+void	free(void *ptr)
+{
+	if (set_free(g_malloc.tiny, ptr) && set_free(g_malloc.small, ptr) && free_large(ptr))
 	{
-		if (&(tmp2->ptr) == &ptr)
-		{
-			tmp2->is_free = 1;
-			return ;
-		}
-		tmp2 = tmp2->next;
+		write(2, "free error\n", 11);
+		exit(0);
 	}
-	tmp3 = g_malloc.large;
-	while (tmp3 && tmp3->next)
-	{
-		if (&(tmp3->ptr) == &ptr)
-		{
-			tmp3->is_free = 1;
-			return ;
-		}
-		tmp3 = tmp3->next;
-	}
-	write(2, "free error\n", 11);
-	exit(0);
+	check_all_is_free(g_malloc.tiny, TINY_ZONE);
+	check_all_is_free(g_malloc.small, SMALL_ZONE);
+	return ;
 }
