@@ -26,7 +26,6 @@
 # define TINY_ZONE (4 * getpagesize())
 # define SMALL_ZONE (16 * getpagesize())
 
-
 typedef struct		s_block
 {
 	size_t			size;
