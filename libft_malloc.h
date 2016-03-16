@@ -13,8 +13,6 @@
 #ifndef FT_ALLOC_H
 # define FT_ALLOC_H
 
-# include <stdio.h>
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/mman.h>
