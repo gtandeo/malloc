@@ -12,11 +12,25 @@
 
 #include <libft_malloc.h>
 
-void	*add_tiny(int size)
+static void	*add_block(int size, t_block *list)
 {
-	t_block			*tmp;
-	t_block			*block;
+	t_block		*tmp;
+	t_block		*block;
 
+	tmp = list;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
+	block = tmp->next;
+	block->size = size;
+	block->prev = tmp;
+	block->next = NULL;
+	block->is_free = 0;
+	return (&(block->ptr));
+}
+
+void		*add_tiny(int size)
+{
 	if (!g_malloc.tiny)
 	{
 		if ((g_malloc.tiny = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
@@ -29,25 +43,11 @@ void	*add_tiny(int size)
 		return (&(g_malloc.tiny->ptr));
 	}
 	else
-	{
-		tmp = g_malloc.tiny;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
-		block = tmp->next;
-		block->size = size;
-		block->prev = tmp;
-		block->next = NULL;
-		block->is_free = 0;
-		return (&(block->ptr));
-	}
+		return (add_block(size, g_malloc.tiny));
 }
 
-void	*add_small(int size)
+void		*add_small(int size)
 {
-	t_block			*tmp;
-	t_block			*block;
-
 	if (!g_malloc.small)
 	{
 		if ((g_malloc.small = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
@@ -60,50 +60,5 @@ void	*add_small(int size)
 		return (&(g_malloc.small->ptr));
 	}
 	else
-	{
-		tmp = g_malloc.small;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
-		block = tmp->next;
-		block->size = size;
-		block->prev = tmp;
-		block->next = NULL;
-		block->is_free = 0;
-		return (&(block->ptr));
-	}
-}
-
-void	*add_large(int size)
-{
-	t_block			*tmp;
-	t_block			*block;
-
-	if (!g_malloc.small)
-	{
-		if ((g_malloc.large = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
-				== MAP_FAILED)
-			return (NULL);
-		g_malloc.small->size = size;
-		g_malloc.small->prev = NULL;
-		g_malloc.small->next = NULL;
-		g_malloc.small->is_free = 0;
-		return (&(g_malloc.small->ptr));
-	}
-	else
-	{
-		tmp = g_malloc.large;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
-				== MAP_FAILED)
-			return (NULL);
-		block->size = size;
-		block->prev = tmp;
-		block->next = NULL;
-		block->is_free = 0;
-		tmp->next = block;
-		return (&(block->ptr));
-	}
-	return (NULL);
+		return (add_block(size, g_malloc.small));
 }

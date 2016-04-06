@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc.c                                           :+:      :+:    :+:   */
+/*   sgt_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/04 05:24:17 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/02/08 10:48:25 by gtandeo          ###   ########.fr       */
+/*   Created: 2016/04/06 07:47:23 by gtandeo           #+#    #+#             */
+/*   Updated: 2016/04/06 07:47:24 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft_malloc.h>
 
-void	*malloc(size_t size)
+int		tiny_size(int nbr)
 {
-	if (size <= TINY_BLOCK)
-		return (add_tiny(size));
-	else if (size <= SMALL_BLOCK)
-		return (add_small(size));
-	/*else
-		return (add_block(size));*/
-	return (NULL);
+	static int	rest = TINY_ZONE;
+
+	rest += nbr;
+	return (rest);
+}
+
+int		small_size(int nbr)
+{
+	static int	rest = SMALL_ZONE;
+
+	rest += nbr;
+	return (rest);
 }

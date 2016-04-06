@@ -52,5 +52,7 @@ void				show_alloc_mem();
 void				*add_tiny(int size);
 void				*add_small(int size);
 void				*add_large(int size);
+int					tiny_size(int nbr);
+int					small_size(int nbr);
 
 #endif
