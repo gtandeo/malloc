@@ -37,7 +37,8 @@ static void	*add_large_block(int size)
 	tmp = g_malloc.large;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
+	if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON
+		| MAP_PRIVATE, -1, 0))
 			== MAP_FAILED)
 		return (NULL);
 	block->size = size;
@@ -52,7 +53,8 @@ void		*add_tiny(int size)
 {
 	if (!g_malloc.tiny)
 	{
-		if ((g_malloc.tiny = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
+		if ((g_malloc.tiny = mmap(NULL, TINY_ZONE, PROT_READ | PROT_WRITE,
+			MAP_ANON | MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
 		g_malloc.tiny->size = size;
@@ -69,7 +71,8 @@ void		*add_small(int size)
 {
 	if (!g_malloc.small)
 	{
-		if ((g_malloc.small = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
+		if ((g_malloc.small = mmap(NULL, SMALL_ZONE, PROT_READ | PROT_WRITE,
+			MAP_ANON | MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
 		g_malloc.small->size = size;
@@ -86,7 +89,8 @@ void		*add_large(int size)
 {
 	if (!g_malloc.small)
 	{
-		if ((g_malloc.large = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0))
+		if ((g_malloc.large = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANON
+			| MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
 		g_malloc.small->size = size;

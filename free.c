@@ -12,7 +12,7 @@
 
 #include <libft_malloc.h>
 
-static void	check_all_is_free(t_block *zone, int size)
+static void		check_all_is_free(t_block *zone, int size)
 {
 	t_block		*tmp;
 
@@ -61,9 +61,10 @@ static int		set_free(t_block *zone, void *ptr)
 	return (1);
 }
 
-void	free(void *ptr)
+void			free(void *ptr)
 {
-	if (set_free(g_malloc.tiny, ptr) && set_free(g_malloc.small, ptr) && free_large(ptr))
+	if (set_free(g_malloc.tiny, ptr) && set_free(g_malloc.small, ptr)
+		&& free_large(ptr))
 	{
 		write(2, "free error\n", 11);
 		exit(0);

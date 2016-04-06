@@ -18,7 +18,7 @@ void	*malloc(size_t size)
 		return (add_tiny(size));
 	else if (size <= SMALL_BLOCK)
 		return (add_small(size));
-	/*else
-		return (add_block(size));*/
+	else
+		return (add_large(size));
 	return (NULL);
 }
