@@ -34,7 +34,7 @@ static int		free_large(void *ptr)
 	tmp = g_malloc.large;
 	while (tmp && tmp->next)
 	{
-		if (&(tmp->ptr) == &ptr)
+		if (&(tmp->ptr) == ptr)
 		{
 			munmap(tmp, tmp->size);
 			return (0);
@@ -49,9 +49,9 @@ static int		set_free(t_block *zone, void *ptr)
 	t_block		*tmp;
 
 	tmp = zone;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
-		if (&(tmp->ptr) == &ptr)
+		if (&(tmp->ptr) == ptr)
 		{
 			tmp->is_free = 1;
 			return (0);

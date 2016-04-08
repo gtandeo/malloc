@@ -16,9 +16,12 @@
 int		main(void)
 {
 	char	*test;
+	char	*test2;
 
 	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
 		write(1, "error\n", 6);
+	//if ((test2 = (char*)malloc(sizeof(char) * 3)) == NULL)
+	//	write(1, "error\n", 6);
 	test[0] = 't';
 	test[1] = 'e';
 	test[2] = 's';
@@ -26,6 +29,10 @@ int		main(void)
 	test[4] = '\0';
 	printf("%s\n", test);
 	free(test);
-	printf("%s\n", test);
+	//test2[0] = 't';
+	//test2[1] = 'e';
+	//test2[2] = '\0';
+	//printf("%s\n", test2);
+	//free(test2);
 	return (0);
 }
