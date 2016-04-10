@@ -13,19 +13,6 @@
 #include <libft_malloc.h>
 #include <stdio.h>
 
-void	print_mem(void)
-{
-	t_block		*tmp;
-
-	tmp = g_malloc.tiny;
-	while (tmp)
-	{
-		printf("%d\n", tmp->is_free);
-		tmp = tmp->next;
-	}
-	return ;
-}
-
 int		main(void)
 {
 	char	*test;
