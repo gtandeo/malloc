@@ -17,7 +17,7 @@ static void		check_all_is_free(t_block *zone, int size)
 	t_block		*tmp;
 
 	tmp = zone;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
 		if (!tmp->is_free)
 			return ;
