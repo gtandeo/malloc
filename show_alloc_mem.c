@@ -29,7 +29,7 @@ static void	ft_putnbr(unsigned int addr)
 
 static void	print_addr(unsigned int addr)
 {
-	char	hex[] = "0123456789ABCDEF";
+	char	hex[] = "0123456789ABCDEFf";
 
 	if (addr < 16)
 		write(1, &hex[addr], 1);
