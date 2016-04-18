@@ -21,8 +21,10 @@ int		tiny_remaining_size(int block_size)
 	if (tmp > (unsigned int)TINY_ZONE)
 		return (0);
 	else
+	{
 		total_size += (sizeof(t_block) + block_size);
 		return (1);
+	}
 }
 
 int		small_remaining_size(int block_size)
@@ -34,6 +36,8 @@ int		small_remaining_size(int block_size)
 	if (tmp > (unsigned int)SMALL_ZONE)
 		return (0);
 	else
+	{
 		total_size += (sizeof(t_block) + block_size);
 		return (1);
+	}
 }

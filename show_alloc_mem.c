@@ -15,6 +15,7 @@
 static void	ft_putnbr(unsigned int addr)
 {
 	int		n;
+
 	if (addr < 10)
 	{
 		n = addr + 48;
@@ -29,8 +30,20 @@ static void	ft_putnbr(unsigned int addr)
 
 static void	print_addr(unsigned int addr)
 {
-	char	hex[] = "0123456789ABCDEF";
+	char	hex[16];
+	int		i;
 
+	i = 0;
+	while (i < 10)
+	{
+		hex[i] = i + 48;
+		i++;
+	}
+	while (i < 16)
+	{
+		hex[i] = i + 55;
+		i++;
+	}
 	if (addr < 16)
 		write(1, &hex[addr], 1);
 	if (addr > 15)
