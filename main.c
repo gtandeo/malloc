@@ -20,19 +20,20 @@ int		main(void)
 
 	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
 		write(1, "error\n", 6);
-	//if ((test2 = (char*)malloc(sizeof(char) * 3)) == NULL)
-	//	write(1, "error\n", 6);
+	if ((test2 = (char*)malloc(sizeof(char) * 3)) == NULL)
+		write(1, "error\n", 6);
 	test[0] = 't';
 	test[1] = 'e';
 	test[2] = 's';
 	test[3] = 't';
 	test[4] = '\0';
 	printf("%s\n", test);
-	free(test);
-	//test2[0] = 't';
-	//test2[1] = 'e';
-	//test2[2] = '\0';
-	//printf("%s\n", test2);
+	//free(test);
+	test2[0] = 't';
+	test2[1] = 'e';
+	test2[2] = '\0';
+	printf("%s\n", test2);
 	//free(test2);
+	show_alloc_mem();
 	return (0);
 }

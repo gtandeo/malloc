@@ -14,7 +14,8 @@ SRC = malloc.c \
 	  free.c \
 	  realloc.c \
 	  add_block.c \
-	  sgt_size.c
+	  sgt_size.c \
+	  show_alloc_mem.c
 
 CFLAGS = -Wall -Werror -Wextra
 
