@@ -14,9 +14,9 @@
 
 void	*malloc(size_t size)
 {
-	if (tiny_remaining_size(size))
+	if (tiny_remaining_size(size) && size <= TINY_BLOCK)
 		return (add_tiny(size));
-	else if (small_remaining_size(size))
+	else if (small_remaining_size(size) && size <= SMALL_BLOCK)
 		return (add_small(size));
 	else
 		return (add_large(size));

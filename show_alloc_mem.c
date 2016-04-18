@@ -40,40 +40,49 @@ static void	print_addr(unsigned int addr)
 	}
 }
 
-static void	print_zone_addr(t_block *zone)
+static int	print_zone_addr(t_block *zone)
 {
-	t_block	*tmp;
+	t_block			*tmp;
+	unsigned int	zone_size;
 
 	tmp = zone;
+	zone_size = 0;
 	while (tmp)
 	{
 		if (tmp->is_free == 0)
 		{
 			write(1, "0x", 2);
 			print_addr((unsigned int)&(tmp->ptr));
-			write(1, " - ", 3);
-			write(1, "0x", 2);
+			write(1, " - 0x", 5);
 			print_addr((unsigned int)&(tmp->ptr) + tmp->size);
 			write(1, " : ", 3);
 			ft_putnbr(tmp->size);
 			write(1, " octets\n", 8);
+			zone_size += tmp->size;
 		}
 		tmp = tmp->next;
 	}
+	return (zone_size);
 }
 
 void		show_alloc_mem(void)
 {
+	unsigned int	total_size;
+
+	total_size = 0;
 	write(1, "TINY : 0x", 9);
 	print_addr((unsigned int)&(g_malloc.tiny));
 	write(1, "\n", 1);
-	print_zone_addr(g_malloc.tiny);
-	write(1, "SMALL : 0x", 9);
+	total_size += print_zone_addr(g_malloc.tiny);
+	write(1, "SMALL : 0x", 10);
 	print_addr((unsigned int)&(g_malloc.small));
 	write(1, "\n", 1);
-	print_zone_addr(g_malloc.small);
-	write(1, "LARGE : 0x", 9);
+	total_size += print_zone_addr(g_malloc.small);
+	write(1, "LARGE : 0x", 10);
 	print_addr((unsigned int)&(g_malloc.large));
 	write(1, "\n", 1);
-	print_zone_addr(g_malloc.large);
+	total_size += print_zone_addr(g_malloc.large);
+	write(1, "Total : ", 8);
+	ft_putnbr(total_size);
+	write(1, " octets\n", 8);
 }
