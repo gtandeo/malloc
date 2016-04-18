@@ -47,14 +47,17 @@ static void	print_zone_addr(t_block *zone)
 	tmp = zone;
 	while (tmp)
 	{
-		write(1, "0x", 2);
-		print_addr((unsigned int)&(tmp->ptr));
-		write(1, " - ", 3);
-		write(1, "0x", 2);
-		print_addr((unsigned int)&(tmp->ptr) + tmp->size);
-		write(1, " : ", 3);
-		ft_putnbr(tmp->size);
-		write(1, " octets\n", 8);
+		if (tmp->is_free == 0)
+		{
+			write(1, "0x", 2);
+			print_addr((unsigned int)&(tmp->ptr));
+			write(1, " - ", 3);
+			write(1, "0x", 2);
+			print_addr((unsigned int)&(tmp->ptr) + tmp->size);
+			write(1, " : ", 3);
+			ft_putnbr(tmp->size);
+			write(1, " octets\n", 8);
+		}
 		tmp = tmp->next;
 	}
 }
