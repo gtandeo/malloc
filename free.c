@@ -17,12 +17,13 @@ static void		check_all_is_free(t_block *zone, int size)
 	t_block		*tmp;
 
 	tmp = zone;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
 		if (!tmp->is_free)
 			return ;
 		tmp = tmp->next;
 	}
+	zone = NULL;
 	munmap(zone, size);
 	return ;
 }
@@ -51,7 +52,7 @@ static int		set_free(t_block *zone, void *ptr)
 	tmp = zone;
 	while (tmp)
 	{
-		if (&(tmp->ptr) == ptr)
+		if (tmp->is_free == 0 && &(tmp->ptr) == ptr)
 		{
 			tmp->is_free = 1;
 			return (0);

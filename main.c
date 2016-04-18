@@ -28,12 +28,20 @@ int		main(void)
 	test[3] = 't';
 	test[4] = '\0';
 	printf("%s\n", test);
+<<<<<<< HEAD
 	//free(test);
+=======
+	free(test);
+>>>>>>> 338fbd5d505c2c6449b05ca01eebd47cbb3f3d93
 	test2[0] = 't';
 	test2[1] = 'e';
 	test2[2] = '\0';
 	printf("%s\n", test2);
+<<<<<<< HEAD
 	//free(test2);
 	show_alloc_mem();
+=======
+	free(test2);
+>>>>>>> 338fbd5d505c2c6449b05ca01eebd47cbb3f3d93
 	return (0);
 }
