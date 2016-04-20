@@ -19,7 +19,6 @@ int		main(void)
 	char	*test2;
 	char	*test3;
 	//char	*test4;
-	char	*test5;
 
 	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
 		write(1, "error\n", 6);
@@ -29,8 +28,6 @@ int		main(void)
 		write(1, "error\n", 6);
 	//if ((test4 = (char*)malloc(sizeof(char) * 984702938)) == NULL)
 	//	write(1, "error\n", 6);
-	if ((test5 = (char*)malloc(sizeof(char) * 0)) == NULL)
-		write(1, "error\n", 6);
 	test[0] = 't';
 	test[1] = 'e';
 	test[2] = 's';
