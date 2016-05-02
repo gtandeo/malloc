@@ -23,17 +23,17 @@ int		main(void)
 	char	*test6;
 
 	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
-		write(1, "error\n", 6);
+		write(1, "malloc 1 error\n", 15);
 	if ((test2 = (char*)malloc(sizeof(char) * 3)) == NULL)
-		write(1, "error\n", 6);
+		write(1, "malloc 2 error\n", 15);
 	if ((test3 = (char*)malloc(sizeof(char) * 1024)) == NULL)
-		write(1, "error\n", 6);
+		write(1, "malloc 3 error\n", 15);
 	if ((test4 = (char*)malloc(sizeof(char) * 984702938)) == NULL)
-		write(1, "error\n", 6);
+		write(1, "malloc 4 error\n", 15);
 	if ((test5 = (char*)malloc(sizeof(char) * 984938)) == NULL)
-		write(1, "error\n", 6);
+		write(1, "malloc 5 error\n", 15);
 	if ((test6 = (char*)malloc(sizeof(char) * 0)) == NULL)
-		write(1, "error\n", 6);
+		write(1, "malloc 6 error\n", 15);
 	test[0] = 't';
 	test[1] = 'e';
 	test[2] = 's';

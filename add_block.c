@@ -12,14 +12,18 @@
 
 #include <libft_malloc.h>
 
-static void	*add_block(int size, t_block *list)
+static void	*add_block(size_t size, t_block *list)
 {
 	t_block		*tmp;
 	t_block		*block;
 
 	tmp = list;
 	while (tmp && tmp->next)
+	{
+		if (tmp->size <= size && tmp->is_free == 1)
+			return (&(tmp->ptr));
 		tmp = tmp->next;
+	}
 	tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
 	block = tmp->next;
 	block->size = size;
@@ -29,14 +33,18 @@ static void	*add_block(int size, t_block *list)
 	return (&(block->ptr));
 }
 
-static void	*add_large_block(int size)
+static void	*add_large_block(size_t size)
 {
 	t_block			*tmp;
 	t_block			*block;
 
 	tmp = g_malloc.large;
 	while (tmp && tmp->next)
+	{
+		if (tmp->size <= size && tmp->is_free == 1)
+			return (&(tmp->ptr));
 		tmp = tmp->next;
+	}
 	if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE,
 		MAP_ANON | MAP_PRIVATE, -1, 0))
 			== MAP_FAILED)
