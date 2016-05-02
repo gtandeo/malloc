@@ -22,7 +22,7 @@ int		main(void)
 	char	*test5;
 	char	*test6;
 
-	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
+	if ((test = (char*)malloc(sizeof(char) * 7)) == NULL)
 		write(1, "malloc 1 error\n", 15);
 	if ((test2 = (char*)malloc(sizeof(char) * 3)) == NULL)
 		write(1, "malloc 2 error\n", 15);
@@ -41,12 +41,12 @@ int		main(void)
 	test[4] = '\0';
 	printf("%s\n", test);
 	//free(test);
-	//free(NULL);
 	test2[0] = 't';
 	test2[1] = 'e';
 	test2[2] = '\0';
 	printf("%s\n", test2);
 	//free(test2);
+	realloc(test3, 14);
 	show_alloc_mem();
 	return (0);
 }
