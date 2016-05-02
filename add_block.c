@@ -87,17 +87,17 @@ void		*add_small(int size)
 
 void		*add_large(int size)
 {
-	if (!g_malloc.small)
+	if (!g_malloc.large)
 	{
 		if ((g_malloc.large = mmap(NULL, size, PROT_READ | PROT_WRITE,
 			MAP_ANON | MAP_PRIVATE, -1, 0))
 				== MAP_FAILED)
 			return (NULL);
-		g_malloc.small->size = size;
-		g_malloc.small->prev = NULL;
-		g_malloc.small->next = NULL;
-		g_malloc.small->is_free = 0;
-		return (&(g_malloc.small->ptr));
+		g_malloc.large->size = size;
+		g_malloc.large->prev = NULL;
+		g_malloc.large->next = NULL;
+		g_malloc.large->is_free = 0;
+		return (&(g_malloc.large->ptr));
 	}
 	else
 		return (add_large_block(size));

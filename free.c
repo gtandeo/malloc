@@ -64,12 +64,11 @@ static int		set_free(t_block *zone, void *ptr)
 
 void			free(void *ptr)
 {
-	if (set_free(g_malloc.tiny, ptr) || set_free(g_malloc.small, ptr)
-		|| free_large(ptr))
-	{
-		write(2, "free error\n", 11);
-		exit(0);
-	}
+	if (!ptr)
+		return ;
+	if (set_free(g_malloc.tiny, ptr) && set_free(g_malloc.small, ptr)
+		&& free_large(ptr))
+		write(2, "Pointer being freed was not allocated\n", 38);
 	check_all_is_free(g_malloc.tiny, TINY_ZONE);
 	check_all_is_free(g_malloc.small, SMALL_ZONE);
 	return ;

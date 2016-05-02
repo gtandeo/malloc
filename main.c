@@ -18,7 +18,9 @@ int		main(void)
 	char	*test;
 	char	*test2;
 	char	*test3;
-	//char	*test4;
+	char	*test4;
+	char	*test5;
+	char	*test6;
 
 	if ((test = (char*)malloc(sizeof(char) * 5)) == NULL)
 		write(1, "error\n", 6);
@@ -26,8 +28,12 @@ int		main(void)
 		write(1, "error\n", 6);
 	if ((test3 = (char*)malloc(sizeof(char) * 1024)) == NULL)
 		write(1, "error\n", 6);
-	//if ((test4 = (char*)malloc(sizeof(char) * 984702938)) == NULL)
-	//	write(1, "error\n", 6);
+	if ((test4 = (char*)malloc(sizeof(char) * 984702938)) == NULL)
+		write(1, "error\n", 6);
+	if ((test5 = (char*)malloc(sizeof(char) * 984938)) == NULL)
+		write(1, "error\n", 6);
+	if ((test6 = (char*)malloc(sizeof(char) * 0)) == NULL)
+		write(1, "error\n", 6);
 	test[0] = 't';
 	test[1] = 'e';
 	test[2] = 's';
@@ -35,6 +41,7 @@ int		main(void)
 	test[4] = '\0';
 	printf("%s\n", test);
 	//free(test);
+	//free(NULL);
 	test2[0] = 't';
 	test2[1] = 'e';
 	test2[2] = '\0';
