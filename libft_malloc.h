@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc.h                                         :+:      :+:    :+:   */
+/*   libft_malloc.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/04 05:19:03 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/02/08 10:54:22 by gtandeo          ###   ########.fr       */
+/*   Created: 2016/05/02 07:54:41 by gtandeo           #+#    #+#             */
+/*   Updated: 2016/05/02 07:54:44 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ALLOC_H
-# define FT_ALLOC_H
+#ifndef LIBFT_MALLOC_H
+# define LIBFT_MALLOC_H
 
 # include <stdlib.h>
 # include <unistd.h>

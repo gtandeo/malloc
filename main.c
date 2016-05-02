@@ -46,7 +46,8 @@ int		main(void)
 	test2[2] = '\0';
 	printf("%s\n", test2);
 	//free(test2);
-	realloc(test3, 14);
 	show_alloc_mem();
+	//realloc(test3, 14);
+	//show_alloc_mem();
 	return (0);
 }
