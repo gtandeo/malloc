@@ -30,7 +30,7 @@ int		main(void)
 		write(1, "malloc 3 error\n", 15);
 	if ((test4 = (char*)malloc(sizeof(char) * 984702938)) == NULL)
 		write(1, "malloc 4 error\n", 15);
-	if ((test5 = (char*)malloc(sizeof(char) * 984938)) == NULL)
+	if ((test5 = (char*)malloc(sizeof(char) * 745938)) == NULL)
 		write(1, "malloc 5 error\n", 15);
 	if ((test6 = (char*)malloc(sizeof(char) * 0)) == NULL)
 		write(1, "malloc 6 error\n", 15);

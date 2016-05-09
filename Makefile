@@ -32,15 +32,13 @@ HEAD = libft_malloc.h
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar -rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	@$(CC) $(CFLAGS) -shared -o $(NAME) $(OBJ)
 	@echo ""
 	@echo "\033[33m"$(NAME) Compiled ! "\033[32m"Success
 	@test -f libft_malloc.so || ln -s $(NAME) libft_malloc.so
 	@echo "\033[33m"libft_malloc.so Created ! "\033[32m"Success
 
 $(OBJ): $(HEAD)
-
 %.o: %.c
 	@echo -n .
 	@$(CC) $(CFLAGS) -c $< -o $@ -I .
