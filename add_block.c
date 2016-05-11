@@ -18,10 +18,20 @@ static void	*add_block(size_t size, t_block *list)
 	t_block		*block;
 
 	tmp = list;
+	if (tmp && size <= tmp->size && tmp->is_free == 1)
+	{
+		tmp->size = size;
+		tmp->is_free = 0;
+		return (&(tmp->ptr));
+	}
 	while (tmp && tmp->next)
 	{
-		if (tmp->size <= size && tmp->is_free == 1)
+		if (size <= tmp->size && tmp->is_free == 1)
+		{
+			tmp->size = size;
+			tmp->is_free = 0;
 			return (&(tmp->ptr));
+		}
 		tmp = tmp->next;
 	}
 	tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
@@ -41,7 +51,7 @@ static void	*add_large_block(size_t size)
 	tmp = g_malloc.large;
 	while (tmp && tmp->next)
 	{
-		if (tmp->size <= size && tmp->is_free == 1)
+		if (size <= tmp->size && tmp->is_free == 1)
 			return (&(tmp->ptr));
 		tmp = tmp->next;
 	}
@@ -109,5 +119,4 @@ void		*add_large(int size)
 	}
 	else
 		return (add_large_block(size));
-	return (NULL);
 }

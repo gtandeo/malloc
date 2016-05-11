@@ -6,7 +6,7 @@
 #    By: gtandeo <gtandeo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 15:40:28 by gtandeo           #+#    #+#              #
-#    Updated: 2016/01/21 23:55:14 by gtandeo          ###   ########.fr        #
+#    Updated: 2016/05/11 11:41:47 by gtandeo          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,6 +16,8 @@ SRC = malloc.c \
 	  add_block.c \
 	  sgt_size.c \
 	  show_alloc_mem.c
+
+CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 

@@ -19,12 +19,12 @@ static void		check_all_is_free(t_block *zone, int size)
 	tmp = zone;
 	while (tmp)
 	{
-		if (!tmp->is_free)
+		if (tmp->is_free == 0)
 			return ;
 		tmp = tmp->next;
 	}
-	zone = NULL;
 	munmap(zone, size);
+	zone = NULL;
 	return ;
 }
 
@@ -68,7 +68,7 @@ void			free(void *ptr)
 		return ;
 	if (set_free(g_malloc.tiny, ptr) && set_free(g_malloc.small, ptr)
 		&& free_large(ptr))
-		write(2, "Pointer being freed was not allocated\n", 38);
+		return ;
 	check_all_is_free(g_malloc.tiny, TINY_ZONE);
 	check_all_is_free(g_malloc.small, SMALL_ZONE);
 	return ;

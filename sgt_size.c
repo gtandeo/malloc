@@ -14,11 +14,11 @@
 
 int		tiny_remaining_size(int block_size)
 {
-	static int		total_size = 0;
-	unsigned int	tmp;
+	static unsigned long int	total_size = 0;
+	unsigned long int			tmp;
 
 	tmp = total_size + (sizeof(t_block) + block_size);
-	if (tmp > (unsigned int)TINY_ZONE)
+	if (tmp > (unsigned long int)TINY_ZONE)
 		return (0);
 	else
 	{
@@ -29,11 +29,11 @@ int		tiny_remaining_size(int block_size)
 
 int		small_remaining_size(int block_size)
 {
-	static int		total_size = 0;
-	unsigned int	tmp;
+	static unsigned long int	total_size = 0;
+	unsigned long int			tmp;
 
 	tmp = total_size + (sizeof(t_block) + block_size);
-	if (tmp > (unsigned int)SMALL_ZONE)
+	if (tmp > (unsigned long int)SMALL_ZONE)
 		return (0);
 	else
 	{

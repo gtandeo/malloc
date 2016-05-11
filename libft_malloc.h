@@ -6,14 +6,13 @@
 /*   By: gtandeo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 07:54:41 by gtandeo           #+#    #+#             */
-/*   Updated: 2016/05/02 07:54:44 by gtandeo          ###   ########.fr       */
+/*   Updated: 2016/05/11 09:40:28 by gtandeo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_MALLOC_H
 # define LIBFT_MALLOC_H
 
-# include <stdlib.h>
 # include <unistd.h>
 # include <sys/mman.h>
 # include <sys/time.h>
@@ -21,10 +20,10 @@
 
 # include <stdio.h>
 
-# define TINY_BLOCK 128
-# define SMALL_BLOCK 1024
-# define TINY_ZONE (4 * getpagesize())
-# define SMALL_ZONE (16 * getpagesize())
+# define TINY_BLOCK 2048
+# define SMALL_BLOCK 130208
+# define TINY_ZONE (128 * getpagesize())
+# define SMALL_ZONE (1024 * getpagesize())
 
 typedef struct		s_block
 {

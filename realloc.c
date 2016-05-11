@@ -52,7 +52,12 @@ void		*realloc(void *ptr, size_t size)
 	void	*ret_2;
 
 	if (size == 0)
-		return (NULL);
+	{
+		free(ptr);
+		return (malloc(TINY_BLOCK));
+	}
+	if (ptr == NULL)
+		return (malloc(size));
 	ret_0 = ptr_is_find(g_malloc.tiny, ptr, size);
 	ret_1 = ptr_is_find(g_malloc.small, ptr, size);
 	ret_2 = ptr_is_find(g_malloc.large, ptr, size);

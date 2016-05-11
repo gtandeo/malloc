@@ -14,11 +14,11 @@
 
 void	*malloc(size_t size)
 {
-	if (size <= 0)
+	if (size == 0)
 		return (NULL);
-	else if (tiny_remaining_size(size) && size <= TINY_BLOCK)
+	else if (size <= TINY_BLOCK && tiny_remaining_size(size))
 		return (add_tiny(size));
-	else if (small_remaining_size(size) && size <= SMALL_BLOCK)
+	else if (size <= SMALL_BLOCK && small_remaining_size(size))
 		return (add_small(size));
 	else
 		return (add_large(size));
