@@ -38,6 +38,8 @@ static void	*ptr_is_find(t_block *zone, void *ptr, size_t size)
 		if (&(tmp->ptr) == ptr)
 		{
 			ret = malloc(size);
+			//printf("test\n");
+			printf("cpy = %s", ft_memcpy(ret, ptr, size));
 			return (ft_memcpy(ret, ptr, size));
 		}
 		tmp = tmp->next;
