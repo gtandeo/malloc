@@ -51,6 +51,9 @@ void				show_alloc_mem();
 void				*add_tiny(int size);
 void				*add_small(int size);
 void				*add_large(int size);
+void				init_block(t_block **block, t_block *tmp, size_t size);
+int					init_large_block(t_block **block, t_block **tmp,
+					size_t size);
 int					tiny_remaining_size(int block_size);
 int					small_remaining_size(int block_size);
 

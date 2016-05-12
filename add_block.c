@@ -35,11 +35,12 @@ static void	*add_block(size_t size, t_block *list)
 		tmp = tmp->next;
 	}
 	tmp->next = tmp + sizeof(t_block) - sizeof(tmp->data) + tmp->size;
-	block = tmp->next;
+	init_block(&block, tmp, size);
+	/*block = tmp->next;
 	block->size = size;
 	block->prev = tmp;
 	block->next = NULL;
-	block->is_free = 0;
+	block->is_free = 0;*/
 	return (&(block->ptr));
 }
 
@@ -49,6 +50,12 @@ static void	*add_large_block(size_t size)
 	t_block			*block;
 
 	tmp = g_malloc.large;
+	if (tmp && size <= tmp->size && tmp->is_free == 1)
+	{
+		tmp->size = size;
+		tmp->is_free = 0;
+		return (&(tmp->ptr));
+	}
 	while (tmp && tmp->next)
 	{
 		if (size <= tmp->size && tmp->is_free == 1)
@@ -59,7 +66,9 @@ static void	*add_large_block(size_t size)
 		}
 		tmp = tmp->next;
 	}
-	if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE,
+	if (init_large_block(&block, &tmp, size))
+		return (NULL);
+	/*if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE,
 		MAP_ANON | MAP_PRIVATE, -1, 0))
 			== MAP_FAILED)
 		return (NULL);
@@ -67,7 +76,7 @@ static void	*add_large_block(size_t size)
 	block->prev = tmp;
 	block->next = NULL;
 	block->is_free = 0;
-	tmp->next = block;
+	tmp->next = block;*/
 	return (&(block->ptr));
 }
 

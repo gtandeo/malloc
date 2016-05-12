@@ -14,6 +14,7 @@ SRC = malloc.c \
 	  free.c \
 	  realloc.c \
 	  add_block.c \
+	  init.c \
 	  sgt_size.c \
 	  show_alloc_mem.c
 
