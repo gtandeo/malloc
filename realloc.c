@@ -37,10 +37,9 @@ static void	*ptr_is_find(t_block *zone, void *ptr, size_t size)
 	{
 		if (&(tmp->ptr) == ptr)
 		{
-			ret = malloc(size);
-			//printf("test\n");
-			printf("cpy = %s", ft_memcpy(ret, ptr, size));
-			return (ft_memcpy(ret, ptr, size));
+			ret = malloc(size + 1);
+			ft_memcpy(ret, ptr, size);
+			return (ret);
 		}
 		tmp = tmp->next;
 	}
@@ -63,20 +62,13 @@ void		*realloc(void *ptr, size_t size)
 	ret_0 = ptr_is_find(g_malloc.tiny, ptr, size);
 	ret_1 = ptr_is_find(g_malloc.small, ptr, size);
 	ret_2 = ptr_is_find(g_malloc.large, ptr, size);
+	if (!ret_0 && !ret_1 && !ret_2)
+		return (NULL);
+	free(ptr);
 	if (ret_0)
-	{
-		free(ptr);
 		return (ret_0);
-	}
 	else if (ret_1)
-	{
-		free(ptr);
 		return (ret_1);
-	}
-	else if (ret_2)
-	{
-		free(ptr);
+	else
 		return (ret_2);
-	}
-	return (NULL);
 }

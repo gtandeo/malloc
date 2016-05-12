@@ -52,7 +52,11 @@ static void	*add_large_block(size_t size)
 	while (tmp && tmp->next)
 	{
 		if (size <= tmp->size && tmp->is_free == 1)
+		{
+			tmp->size = size;
+			tmp->is_free = 0;
 			return (&(tmp->ptr));
+		}
 		tmp = tmp->next;
 	}
 	if ((block = mmap(NULL, size, PROT_READ | PROT_WRITE,
